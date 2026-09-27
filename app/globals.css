@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: 246 248 255;
+  --panel: 255 255 255;
+  --text: 15 23 42;
+  --muted: 82 96 124;
+  --line: 205 216 235;
+}
+
+.dark {
+  color-scheme: dark;
+  --bg: 6 9 20;
+  --panel: 11 16 34;
+  --text: 240 245 255;
+  --muted: 150 163 194;
+  --line: 43 54 82;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: rgb(var(--text));
+  background:
+    radial-gradient(circle at 20% -10%, rgba(104, 80, 255, .16), transparent 34%),
+    radial-gradient(circle at 88% 12%, rgba(33, 203, 255, .14), transparent 32%),
+    rgb(var(--bg));
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-x: hidden;
+}
+
+::selection { background: rgba(116, 86, 255, .35); }
+
+@layer components {
+  .container-shell { @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8; }
+  .glass {
+    @apply border border-white/50 shadow-card dark:border-white/10;
+    background-color: rgba(255, 255, 255, .86);
+  }
+  .dark .glass {
+    background-color: rgba(11, 16, 34, .90);
+  }
+  .section-kicker { @apply text-xs font-semibold uppercase tracking-[0.24em] text-cyan-600 dark:text-cyan-300; }
+  .section-title { @apply mt-3 text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl; }
+  .section-copy { @apply mt-4 max-w-3xl text-base leading-7 text-slate-600 dark:text-slate-300/80; }
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:-translate-y-0.5 hover:shadow-indigo-500/30 focus:outline-none focus:ring-2 focus:ring-cyan-400/70;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-slate-300/80 bg-white/70 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:border-slate-400 hover:bg-white dark:border-white/15 dark:bg-white/5 dark:text-white dark:hover:bg-white/10;
+  }
+  .feature-card {
+    @apply glass rounded-2xl p-6 transition duration-300 hover:-translate-y-1 hover:border-cyan-400/40;
+  }
+}
+
+.grid-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background-image:
+    linear-gradient(rgba(130, 150, 200, .08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(130, 150, 200, .08) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 90%);
+}
+
+.led-strip {
+  background: linear-gradient(90deg, #8b5cf6 0%, #22d3ee 25%, #3b82f6 50%, #a855f7 72%, #06b6d4 100%);
+  box-shadow: 0 0 18px rgba(34, 211, 238, .8), 0 0 42px rgba(139, 92, 246, .42);
+}
+
+.soft-scrollbar::-webkit-scrollbar { height: 8px; }
+.soft-scrollbar::-webkit-scrollbar-thumb { background: rgba(120, 130, 160, .35); border-radius: 999px; }
+
+
+/* Performance: let Chromium skip paint/layout work for heavy sections far below the viewport. */
+@supports (content-visibility: auto) {
+  main > section:not(#home) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+}
+
+/* Avoid expensive motion/compositing for users who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
