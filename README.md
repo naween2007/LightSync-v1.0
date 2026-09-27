@@ -88,3 +88,9 @@ For development on port 8000:
 ```bash
 npm run dev:8000
 ```
+
+## Interactive 3D wiring tutorial
+
+The hardware section now uses a lazy-loaded WebGL scene built with Three.js, React Three Fiber and Drei. It renders procedural 3D geometry for the WLED controller, WS2812B-style strip, three cable conductors, 3-pin connector and enclosed low-voltage Power Adapter.
+
+The scene is isolated under `components/wiring3d/`, uses native OrbitControls, lazy viewport mounting, reduced-motion handling and a lower-end device mode. Proper GLB assets can replace the procedural models later without changing the tutorial controls or animation flow.

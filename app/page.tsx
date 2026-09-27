@@ -29,6 +29,7 @@ import SettingsRecoveryDemo from "@/components/SettingsRecoveryDemo";
 import DownloadButton from "@/components/DownloadButton";
 import SystemRequirements from "@/components/SystemRequirements";
 import ReleaseDownload from "@/components/ReleaseDownload";
+import Wiring3DSection from "@/components/wiring3d/Wiring3DSection";
 import { LIGHTSYNC_RELEASE } from "@/src/config/download";
 
 const featureGroups = [
@@ -169,6 +170,16 @@ export default function Home(){
             {["Windows desktop application","WLED-compatible ESP32 controller","Wi-Fi connection","DDP real-time LED streaming","Up to 500 LEDs in the current LightSync configuration system","Supported/recommended addressable LED types vary by voltage and controller"].map((item)=><div key={item} className="rounded-xl border border-slate-200/70 px-4 py-3 text-sm dark:border-white/10">{item}</div>)}
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <section className="py-20">
+      <div className="container-shell">
+        <div className="section-kicker">Interactive 3D installation</div>
+        <h2 className="section-title">Watch the LightSync hardware connect in real 3D.</h2>
+        <p className="section-copy">Rotate around the controller, inspect the LED strip and watch the three wires, 3-pin connector and low-voltage Power Adapter physically connect in a real WebGL scene.</p>
+        <div className="mt-10"><Wiring3DSection /></div>
       </div>
     </section>
 
